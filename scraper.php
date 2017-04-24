@@ -24,8 +24,6 @@ function getUrlJson($url){
  * @return mixed json value or false if failed
  */
 function putUrlJson($url,$data){
-	print_r($url);
-	print_r(json_encode($data));
 	$ch = curl_init();
 	curl_setopt($ch, CURLOPT_URL, $url);
 	curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; .NET CLR 1.1.4322)');
@@ -66,7 +64,8 @@ function getStudent($student_id) {
 function putDataInElastic($student_id, $student_obj) {
 	$base_url = 'http://localhost:9200/raiseme/student/';
 	$url = $base_url . urlencode($student_id);
-	print_r(putUrlJson($url, $student_obj)); die;
+	$data = (putUrlJson($url, $student_obj));
+	print_r($data);
 }
 
 $student_ids = getUrlJson('http://raise-me-take-home.raise.me');
@@ -77,7 +76,7 @@ $student_fields = Array();
 $course_fields = Array();
 
 // temporary counter to not spam the API
-$i = 0;
+//$i = 0;
 
 foreach ($student_ids as $student_id) {
 	$student_obj = getStudent($student_id);
@@ -140,8 +139,8 @@ foreach ($student_ids as $student_id) {
 	// INSERT DATA INTO ELASTICSEARCH
 	putDataInElastic($student_id, $student_obj);
 
-	++$i;
-	if ($i == 10) { break; }
+	//++$i;
+	//if ($i == 10) { break; }
 }
 
 echo "STUDENT FIELDS = ";

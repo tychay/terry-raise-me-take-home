@@ -38,8 +38,6 @@ Raise.Me task:
 			(probably do that during storage phase)
 			(alternate is: https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-avg-aggregation.html)
 		- load elasticsearch
-			- handle case of nested object (courses)
-				https://www.elastic.co/guide/en/elasticsearch/guide/current/nested-mapping.htmlV
 		- remove break/die
 	Elasticsearch:
 		- Get Elasticsearch up and running @done(2017-04-24)
@@ -76,15 +74,98 @@ Raise.Me task:
 		- alternate tutorial
 				https://www.elastic.co/guide/en/elasticsearch/guide/current/intro.html
 	Tasks to see if it can do:
+		- can I dump/read @done(2017-04-24)
+			GET /raiseme/student/_search
+			{
+				"query": {
+					"match_all": {}
+				}
+			}
+		- handle case of nested object (courses) @done(2017-04-24)
+			https://www.elastic.co/guide/en/elasticsearch/guide/current/nested-mapping.html
+			PUT /raiseme
+			{
+				"mappings": {
+					"student": {
+						"properties": {
+							"courses": {
+								"type": "nested", 
+								"properties": {
+									"name":       { "type": "string"  },
+									"grade":      { "type": "string"  },
+									"schoolYear": { "type": "string"   },
+									"teacher":    { "type": "string"   },
+									"gradeValue": { "type": "float"    },
+									"subject":    { "type": "string"  }
+								}
+							}
+						}
+					}
+				}
+			}
+			INDEX ALREADY EXISTS
+			DELETE /raiseme/student/54e293e7188324f1b800005d
+			DELETE /raiseme
 		- query GPA
 			https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-range-query.html
+			GET /raiseme/student/_search
+			{
+				"query": {
+					"range" : {
+						"GPA" : {
+							"gte" : 2,
+							"lte" : 3,
+							"boost" : 2.0
+						}
+					}
+				}
+			}
 		- student took a course
 			https://www.elastic.co/guide/en/elasticsearch/guide/current/nested-objects.html
-		- student took x courses in a subject
-		- other data fields
-		- student ids to predictive score?
-			add to user data
-		- what API endpoints would need to be created for search service
+			GET /raiseme/student/_search
+			{
+				"query": {
+					"bool": {
+						"must": [
+							{
+								"nested": {
+									"path": "courses", 
+									"query": {
+										"bool": {
+											"must": [ 
+												{
+													"match": {
+														"courses.name": "Geometry"
+													}
+												}
+											]
+										}
+									}
+								}
+							}
+						]
+			}}}
+		- student took x courses in a subject @done(2017-04-24)
+			https://www.elastic.co/guide/en/elasticsearch/guide/current/_analytics.html
+			use aggregator to count courses in subject and then filter by that using BOOL
+		- other data fields @done(2017-04-24)
+			GET /raiseme/student/_search
+			{
+				"query" : {
+					"bool" : {
+						"must" : {
+							"match" : {
+								"americanCitizen" : true
+							}
+						}
+					}
+				}
+			}
+		- student ids to predictive score? @done(2017-04-24)
+			add to user data using PUT
+		- what API endpoints would need to be created for search service @done(2017-04-24)
+			elasticsearch is poor at security and query language is non-intuitive to non-programmers. If it's end user, put a web end
+			Otherwise it can be done as is, or a passthru API which can filter simple things (for instance, the index name or fields that might be locked out). Depends on buisness req
 	
 Discussion:
 	Solution classes:
@@ -92,13 +173,14 @@ Discussion:
 			+: no extra infrastructure, easy
 			-: might not support, may need offline for processing, no fulltext search (probably), slow for longer queries
 		Search Engine:
-			+: 
-			-: 
+			+:  get text search for free, highly performant
+			-: only the engine (still need to deal with loading/streaming data), analytics work is poor
 		Analytics platform (Hadoop or commercial OLAP):
-			+: 
-			-: 
+			+:  great analytics
+			-: complex to set up (many different interfaces, ways to load, etc), overkill, multiple interfaces
 	ElasticSearch vs. :
 		Solr:
+			http://solr-vs-elasticsearch.com
 		Hadoop:
 			- consequences of hadoop v. ElasticSearch
 				https://blog.treasuredata.com/blog/2015/08/31/hadoop-vs-elasticsearch-for-advanced-analytics/
