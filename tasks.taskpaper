@@ -34,9 +34,12 @@ Raise.Me task:
 				[4] => gradeValue
 				[5] => subject
 			)
-		- pre-compute GPA
+		- pre-compute GPA @done(2017-04-24)
 			(probably do that during storage phase)
 			(alternate is: https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-avg-aggregation.html)
+		- load elasticsearch
+			- handle case of nested object (courses)
+				https://www.elastic.co/guide/en/elasticsearch/guide/current/nested-mapping.htmlV
 		- remove break/die
 	Elasticsearch:
 		- Get Elasticsearch up and running @done(2017-04-24)
@@ -47,7 +50,29 @@ Raise.Me task:
 					http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
 			http://localhost:9200/
 		- basic tutorial
-				http://joelabrahamsson.com/elasticsearch-101/
+			http://joelabrahamsson.com/elasticsearch-101/
+			- install chrome sense plugin @done(2017-04-24)
+				https://chrome.google.com/webstore/detail/sense-beta/lhjgkmllcaadmopgmanpapmpjgmfcfig/related?hl=en
+			- searching @done(2017-04-23)
+			- filtering @done(2017-04-23)
+				http://stackoverflow.com/questions/40519806/no-query-registered-for-filtered
+				{
+					"query": {
+						"bool": {
+							"must": {
+								"query_string": {
+									"query": "drama"
+								}
+							},
+							"filter": {
+								"term": { "year": 1962 }
+							}
+						}
+					}
+				}
+				https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-constant-score-query.html
+			- mapping
+				http://stackoverflow.com/questions/40301061/elasticsearch-5-mapperparserexception-with-multi-field
 		- alternate tutorial
 				https://www.elastic.co/guide/en/elasticsearch/guide/current/intro.html
 	Tasks to see if it can do:
