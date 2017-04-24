@@ -185,16 +185,18 @@ Discussion:
 			- consequences of hadoop v. ElasticSearch
 				https://blog.treasuredata.com/blog/2015/08/31/hadoop-vs-elasticsearch-for-advanced-analytics/
 				https://www.quora.com/Why-do-people-use-Hadoop-or-Spark-when-there-is-ElasticSearch
-			
 	Cloud services:
-		
 		AWS:
-			- research CloudSearch (AWS)
+			- research CloudSearch (AWS) [Solr based]
 				http://cloudacademy.com/blog/elasticsearch-vs-cloudsearch/
-			- research ElasticSeqach
+			- research ElasticSearch
+				https://aws.amazon.com/elasticsearch-service/
 			- research AWS Hadoop
+				https://aws.amazon.com/emr/details/hadoop/
 	Considerations:
 		ELK?:
 			- ELK?
 		- how to stream data in
+			basically LogStash is the way to go today (need MongoLogstash or a way of tailing the API?)
 		- scalability?
+			like Solr, it's built on Lucene so scales the same way
