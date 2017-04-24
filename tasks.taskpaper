@@ -10,12 +10,34 @@ Raise.Me task:
 	write scraper in PHP:
 		- write simple PHP script to read data from a URL @done(2017-04-24)
 		- hit the main endpoint @done(2017-04-24)
-		- build something that iterates over students (in return)
-		- build something that hits the API for students
-		- build something that dynamically builds a structure
+		- build something that iterates over students (in return) @done(2017-04-24)
+		- build something that hits the API for students @done(2017-04-24)
+		- build something that dynamically builds a structure of student and courses @done(2017-04-24)
+			STUDENT FIELDS
+			(
+				[0] => americanCitizen
+				[1] => firstName
+				[2] => graduationYear
+				[3] => lastName
+				[4] => zipcode
+				[5] => email
+				[6] => gender
+				[7] => firstGenerationCollegeStudent
+				[8] => createdAt
+			)
+			COURSE FIELDS
+			(
+				[0] => name
+				[1] => grade
+				[2] => schoolYear
+				[3] => teacher
+				[4] => gradeValue
+				[5] => subject
+			)
 		- pre-compute GPA
 			(probably do that during storage phase)
 			(alternate is: https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-avg-aggregation.html)
+		- remove break/die
 	Elasticsearch:
 		- Get Elasticsearch up and running @done(2017-04-24)
 			- download and install @done(2017-04-24)
