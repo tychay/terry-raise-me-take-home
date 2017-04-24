@@ -1,0 +1,28 @@
+Raise.Me task:
+	- hit API @done(2017-04-24)
+		http://raise-me-take-home.raise.me
+	- hit API for student @done(2017-04-24)
+		http://raise-me-take-home.raise.me/5512d83af233c5839c000005.json
+	- get Git instance running @done(2017-04-24)
+		- start Tower @done(2017-04-24)
+		- start a Github repo @done(2017-04-24)
+		- clone @done(2017-04-24)
+	- Get Elasticsearch up and running
+		http://joelabrahamsson.com/elasticsearch-101/
+	
+Discussion:
+	Solution classes:
+		Built In:
+			+: no extra infrastructure, easy
+			-: might not support, may need offline for processing, no fulltext search (probably), slow for longer queries
+		Search Engine:
+			+: 
+			-: 
+		Analytics platform (Hadoop or commercial OLAP):
+			+: 
+			-: 
+	ElasticSearch vs. :
+		
+	Considerations:
+		- how to stream data in
+		- scalability?
