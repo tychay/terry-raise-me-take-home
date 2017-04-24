@@ -7,8 +7,33 @@ Raise.Me task:
 		- start Tower @done(2017-04-24)
 		- start a Github repo @done(2017-04-24)
 		- clone @done(2017-04-24)
-	- Get Elasticsearch up and running
-		http://joelabrahamsson.com/elasticsearch-101/
+	write scraper in PHP:
+		- write simple PHP script to read data from a URL
+		- pre-compute GPA
+			(probably do that during storage phase)
+			(alternate is: https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-avg-aggregation.html)
+	Elasticsearch:
+		- Get Elasticsearch up and running @done(2017-04-24)
+			- download and install @done(2017-04-24)
+				https://www.elastic.co/downloads/elasticsearch
+				Elasticsearch requires at least Java 8 but your Java version from /usr/bin/java does not meet this requirement
+				- install Java @done(2017-04-24)
+					http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html
+			http://localhost:9200/
+		- basic tutorial
+				http://joelabrahamsson.com/elasticsearch-101/
+		- alternate tutorial
+				https://www.elastic.co/guide/en/elasticsearch/guide/current/intro.html
+	Tasks to see if it can do:
+		- query GPA
+			https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-range-query.html
+		- student took a course
+			https://www.elastic.co/guide/en/elasticsearch/guide/current/nested-objects.html
+		- student took x courses in a subject
+		- other data fields
+		- student ids to predictive score?
+			add to user data
+		- what API endpoints would need to be created for search service
 	
 Discussion:
 	Solution classes:
@@ -22,7 +47,21 @@ Discussion:
 			+: 
 			-: 
 	ElasticSearch vs. :
+		Solr:
+		Hadoop:
+			- consequences of hadoop v. ElasticSearch
+				https://blog.treasuredata.com/blog/2015/08/31/hadoop-vs-elasticsearch-for-advanced-analytics/
+				https://www.quora.com/Why-do-people-use-Hadoop-or-Spark-when-there-is-ElasticSearch
+			
+	Cloud services:
 		
+		AWS:
+			- research CloudSearch (AWS)
+				http://cloudacademy.com/blog/elasticsearch-vs-cloudsearch/
+			- research ElasticSeqach
+			- research AWS Hadoop
 	Considerations:
+		ELK?:
+			- ELK?
 		- how to stream data in
 		- scalability?
