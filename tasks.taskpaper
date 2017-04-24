@@ -8,7 +8,11 @@ Raise.Me task:
 		- start a Github repo @done(2017-04-24)
 		- clone @done(2017-04-24)
 	write scraper in PHP:
-		- write simple PHP script to read data from a URL
+		- write simple PHP script to read data from a URL @done(2017-04-24)
+		- hit the main endpoint @done(2017-04-24)
+		- build something that iterates over students (in return)
+		- build something that hits the API for students
+		- build something that dynamically builds a structure
 		- pre-compute GPA
 			(probably do that during storage phase)
 			(alternate is: https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-metrics-avg-aggregation.html)
